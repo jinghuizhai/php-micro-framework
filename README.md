@@ -19,7 +19,7 @@ model文件夹下的相应model类执行sql查询并返回结果给controller
                         |
                   展示数据给用户。
 <hr/>
-**example：
+<h2>example:</h2>
 比如有一个用户访问：http://hostname/user
 意思就是由catalog/controller/user.php中的ControllerUser类处理这个请求，但是并没有指定那个function(函数)，这里的默认的function是index方法，如果ControllUser中没有这个function的话，就会初出错。
 所以可以推测http://hostname/user/login一定是访问ControllerUser的login方法，是这样的。
@@ -49,5 +49,5 @@ function index(){//注意，这里是没有参数的
   ...
 }
 </code></pre>
------------------------------------------------------
+<hr/>
 have fun.
