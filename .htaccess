@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteCond %{REQUEST_URI} !^code\.php$
+	RewriteRule code.php code.php [L]
+	RewriteCond %{REQUEST_URI} !^.*(\.css|\.js|\.gif|\.png|\.jpg|\.jpeg)$
+	RewriteCond %{REQUEST_URI} !^.*\.html$
+	RewriteRule ^/?(admin){1}.*$ admin/index.php [L]
+	RewriteRule ^/?[^u].*(\.php)$ index.php [L]
+	RewriteRule ^/?.*(\.tpl|\.log|\.txt|\.xml|\.pem)$ index.php [L]
+	RewriteRule ^/?[^.]*$ index.php [L]
+</IfModule>
+#RewriteCond %{REQUEST_URI} !.*uploadimgs\.html$

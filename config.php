@@ -1,0 +1,14 @@
+<?php
+	define('HOSTNAME','http://127.0.0.1/php-micro-framework/');
+	define('LOGS','D:/wamp/www/php-micro-framework/logs/');
+	define('PROJECTPATH','D:/wamp/www/php-micro-framework/catalog/');
+	define('ENGINE','D:/wamp/www/php-micro-framework/engine/');
+	define('SERVERNAME','localhost');
+	define('DBNAME','zjh');
+	define('USERNAME','root');
+	define('PASSWORD','');
+	define('MODEL',PROJECTPATH.'model/');
+	define('CONTROLLER',PROJECTPATH.'controller/');
+	define('VIEW',PROJECTPATH.'view/');
+	define('ENGINE',PROJECTPATH.'engine/');
+?>

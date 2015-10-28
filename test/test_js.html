@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN" xml:lang="zh-CN">
+	<head>
+		<!-- <meta http-equiv="X-UA-Compatible" content="IE=Edge" /> -->
+		<meta charset="UTF-8" />
+		<script type="text/javascript" src="http://192.168.10.35/ida/style/js/zjhlib-1.0.js"></script>
+	</head>
+	<body>
+		<form action="http://192.168.10.35/ida/home/test" method="post">
+			<select name="province" id="province" onchange="requestArea(this.options[this.selectedIndex].value,'city')">
+			</select>
+			<select name="city" id="city" onchange="requestArea(this.options[this.selectedIndex].value,'area')">
+			</select>
+			<select name="area" id="area">
+			</select>
+			<button onclick="return check(this);">OK</button>
+		</form>
+		<script type="text/javascript">
+			function requestArea(data,el){
+				zjh.POST('http://192.168.10.35/ida/home/jsonArea',{"data":data},function(r){
+					if(typeof r != 'undefined'){
+						r = eval('('+r+")");
+						if(r.message == ''){
+							if(zjh.isString(el)){
+								el = zjh.get(el);
+							}
+							var data = r.result;
+							data.forEach(function(ele){
+								var option = document.createElement('option');
+								option.value = ele.code;
+								option.innerHTML = ele.fullName;
+								el.appendChild(option);
+							});
+						}
+					}
+				});
+			}
+			window.onload = function(){
+				requestArea("0",'province');
+			};
+			
+			function check(othis){
+				var province = zjh.get('province');
+				alert(province.options[province.selectedIndex].text);
+				return false;
+			}
+		</script>
+	</body>
+</html>
