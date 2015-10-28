@@ -25,12 +25,14 @@ model文件夹下的相应model类执行sql查询并返回结果给controller
 所以可以推测http://hostname/user/login一定是访问ControllerUser的login方法，是这样的。
 需要传参的话怎么办呢？需要分页的话怎么办呢？比如http://hostname/article/2，请求第二页的文章。
 请看ControllerArticle的index方法：
+<pre><code>
   function index($arg){
     $current = (int)$arg[0];//当前请求页数
     $page = array($current,'hostname/article/',20);//每页显示20条记录
     $this->load->model('article')->find($page);
     $pagination = $db->getPage();
   }
+</code></pre>
 可以看到，传参和查询数据以及分页就是这么简单。
 但是，有时候参数是更复杂的，比如，我们要查询name like tom and date between 2014 and 2015的用户怎么办？
 * http://hostname/user/index?name=tom&date_start=2014&date_end=2015
@@ -38,6 +40,7 @@ model文件夹下的相应model类执行sql查询并返回结果给controller
 * 但是不能这样：http://hostname/user?name=tom&date_start=2014&date_end=2015
 * *默认的，带有问号的参数是不能忽略方法参数的*
 这样，user的index方法就可以这样接受参数了：
+<pre><code>
 function index(){//注意，这里是没有参数的
   $get = $this->req->get;
   $name = $get['name'];
@@ -45,5 +48,6 @@ function index(){//注意，这里是没有参数的
   $date_end = $get['date_end'];
   ...
 }
+</code></pre>
 -----------------------------------------------------
 have fun.
